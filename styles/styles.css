@@ -266,3 +266,36 @@ p {
         transform: rotate(20deg) translateY(-4px);
     }
 }
+
+/* Loader estilo "loading..." con puntos que aparecen secuencialmente */
+.loader-dots-text {
+    display: flex;
+    gap: 2px;
+    font-size: 16px;
+    color: #00eaff;
+}
+
+.loader-dots-text .dot {
+    opacity: 0;
+    animation: dot-fade 1.2s infinite;
+}
+
+/* retraso para cada punto */
+.loader-dots-text .dot:nth-child(8) {
+    animation-delay: 0s;
+}
+.loader-dots-text .dot:nth-child(9) {
+    animation-delay: 0.3s;
+}
+.loader-dots-text .dot:nth-child(10) {
+    animation-delay: 0.6s;
+}
+
+@keyframes dot-fade {
+    0%, 100% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+}
