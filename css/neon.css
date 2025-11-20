@@ -1,0 +1,199 @@
+/* Loaders estilo neon (arcade, UI, retro, mixto) */
+
+.loader {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Paleta base neon */
+:root {
+    --neon-cyan: #00eaff;
+    --neon-magenta: #ff00d4;
+    --neon-violet: #8b5cff;
+    --neon-yellow: #ffe066;
+}
+
+/* 1) Neon arcade: anillo con glow fuerte */
+
+.loader-neon-arcade {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 3px solid var(--neon-cyan);
+    box-shadow:
+        0 0 6px var(--neon-cyan),
+        0 0 14px var(--neon-cyan),
+        0 0 24px var(--neon-cyan);
+    animation: neon-arcade-spin 0.9s linear infinite;
+}
+
+@keyframes neon-arcade-spin {
+    0% {
+        transform: rotate(0deg);
+        box-shadow:
+            0 0 6px var(--neon-cyan),
+            0 0 14px var(--neon-cyan);
+    }
+    50% {
+        transform: rotate(180deg);
+        box-shadow:
+            0 0 10px var(--neon-magenta),
+            0 0 22px var(--neon-magenta);
+    }
+    100% {
+        transform: rotate(360deg);
+        box-shadow:
+            0 0 6px var(--neon-cyan),
+            0 0 14px var(--neon-cyan);
+    }
+}
+
+/* 2) Neon UI moderno: línea que recorre el borde */
+
+.loader-neon-ui {
+    width: 60px;
+    height: 22px;
+    position: relative;
+    border-radius: 999px;
+    border: 1px solid #333;
+    overflow: hidden;
+}
+
+.loader-neon-ui::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background:
+        linear-gradient(90deg,
+        transparent 0%,
+        var(--neon-cyan) 40%,
+        var(--neon-magenta) 60%,
+        transparent 100%);
+    transform: translateX(-100%);
+    animation: neon-ui-border 1.1s linear infinite;
+}
+
+.loader-neon-ui::after {
+    content: "";
+    position: absolute;
+    inset: 3px;
+    border-radius: inherit;
+    background: #181818;
+}
+
+@keyframes neon-ui-border {
+    0%   { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* 3) Neon retro 80s: gradiente desplazado */
+
+.loader-neon-retro {
+    width: 80px;
+    height: 10px;
+    border-radius: 999px;
+    background: linear-gradient(90deg,
+        var(--neon-magenta),
+        var(--neon-violet),
+        var(--neon-cyan),
+        var(--neon-yellow));
+    background-size: 250%;
+    box-shadow:
+        0 0 6px var(--neon-magenta),
+        0 0 12px var(--neon-violet);
+    animation: neon-retro 1.4s ease-in-out infinite;
+}
+
+@keyframes neon-retro {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* 4) Texto neon con flicker */
+
+.loader-neon-text {
+    font-family: monospace;
+    font-size: 18px;
+    color: var(--neon-cyan);
+    text-shadow:
+        0 0 4px var(--neon-cyan),
+        0 0 10px var(--neon-cyan),
+        0 0 18px var(--neon-cyan);
+    position: relative;
+}
+
+.loader-neon-text::before {
+    content: "LOADING";
+    animation: neon-text-flicker 1.3s infinite;
+}
+
+@keyframes neon-text-flicker {
+    0%   { opacity: 1; }
+    10%  { opacity: 0.2; }
+    20%  { opacity: 1; }
+    30%  { opacity: 0.4; }
+    40%  { opacity: 1; }
+    100% { opacity: 1; }
+}
+
+/* 5) Neon mixto: círculo + barra + glow */
+
+.loader-neon-mix {
+    width: 40px;
+    height: 40px;
+    position: relative;
+}
+
+.loader-neon-mix::before,
+.loader-neon-mix::after {
+    content: "";
+    position: absolute;
+    border-radius: 999px;
+}
+
+/* círculo central */
+.loader-neon-mix::before {
+    width: 18px;
+    height: 18px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle,
+        var(--neon-yellow) 0%,
+        var(--neon-magenta) 60%);
+    box-shadow:
+        0 0 6px var(--neon-yellow),
+        0 0 14px var(--neon-magenta);
+    animation: neon-mix-pulse 1.1s ease-in-out infinite;
+}
+
+/* barra alrededor */
+.loader-neon-mix::after {
+    width: 100%;
+    height: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: linear-gradient(90deg,
+        transparent,
+        var(--neon-cyan),
+        var(--neon-magenta),
+        transparent);
+    opacity: 0.4;
+    animation: neon-mix-scan 1.1s linear infinite;
+}
+
+@keyframes neon-mix-pulse {
+    0%   { transform: translate(-50%, -50%) scale(0.9); opacity: 0.7; }
+    50%  { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
+    100% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.7; }
+}
+
+@keyframes neon-mix-scan {
+    0%   { transform: translateY(-50%) scaleX(0.8); opacity: 0.2; }
+    50%  { transform: translateY(-50%) scaleX(1);   opacity: 0.6; }
+    100% { transform: translateY(-50%) scaleX(0.8); opacity: 0.2; }
+}

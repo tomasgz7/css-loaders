@@ -8,7 +8,6 @@
     font-size: 16px;
 }
 
-/* --------------------------------------------- */
 /* 1) Typing ">" con cursor parpadeando */
 
 .loader-console-typing::after {
@@ -22,7 +21,6 @@
     100% { opacity: 0; }
 }
 
-/* --------------------------------------------- */
 /* 2) Barras estilo terminal: [====      ] */
 
 .loader-console-bars {
@@ -54,7 +52,6 @@
     100% { transform: translateX(0ch); }
 }
 
-/* --------------------------------------------- */
 /* 3) Brackets animados: < > < > < > */
 
 .loader-console-brackets {
