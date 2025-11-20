@@ -1,0 +1,268 @@
+/* Estilos generales para poder ver los loaders de forma ordenada */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: sans-serif;
+    background: #111;
+    color: #eee;
+    padding: 32px;
+}
+
+h1 {
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+p {
+    margin-bottom: 24px;
+    color: #aaa;
+    text-align: center;
+}
+
+/* Acá armo una grilla simple para mostrar cada loader con su etiqueta */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 24px;
+}
+
+.loader-box {
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    background: #181818;
+}
+
+.loader-label {
+    display: block;
+    margin-top: 12px;
+    font-size: 14px;
+    color: #bbb;
+}
+
+/* Estilo base para todos los loaders, así no repito código */
+.loader {
+    margin: 0 auto;
+}
+
+/* 1) Spinner de borde: uso border y animación de rotación */
+.loader-1 {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #333;
+    border-top-color: #00eaff;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+/* 2) Doble anillo: dos pseudo-elementos que giran en sentidos opuestos */
+.loader-2 {
+    width: 40px;
+    height: 40px;
+    position: relative;
+}
+.loader-2::before,
+.loader-2::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 3px solid transparent;
+}
+.loader-2::before {
+    border-top-color: #ff0066;
+    border-right-color: #ff0066;
+    animation: spin 0.9s linear infinite;
+}
+.loader-2::after {
+    border-bottom-color: #00eaff;
+    border-left-color: #00eaff;
+    animation: spin-reverse 0.9s linear infinite;
+}
+
+/* 3) Tres puntos: simulo un típico "typing" de chat con escalado */
+.loader-3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+}
+.loader-3 span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #00eaff;
+    animation: bounce 0.7s ease-in-out infinite;
+}
+.loader-3 span:nth-child(2) {
+    animation-delay: 0.1s;
+}
+.loader-3 span:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+/* 4) Barra progresiva: ancho que va y vuelve */
+.loader-4 {
+    width: 80px;
+    height: 6px;
+    border-radius: 999px;
+    background: #222;
+    overflow: hidden;
+    position: relative;
+}
+.loader-4::before {
+    /* acá genero la "barrera" que se mueve dentro de la barra */
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 40%;
+    left: -40%;
+    background: linear-gradient(90deg, #00eaff, #00ff99);
+    border-radius: inherit;
+    animation: slide-x 1s ease-in-out infinite;
+}
+
+/* 5) Pulso: escalado + opacidad para simular un pulso */
+.loader-5 {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #00ff99 0%, #00ff99 35%, transparent 60%);
+    animation: pulse 1.2s ease-out infinite;
+}
+
+/* 6) Barras verticales: típicas barras que suben y bajan */
+.loader-6 {
+    display: flex;
+    gap: 4px;
+    align-items: flex-end;
+    height: 28px;
+    justify-content: center;
+}
+.loader-6 span {
+    width: 6px;
+    background: #ffcc00;
+    animation: stretch 0.7s ease-in-out infinite;
+}
+.loader-6 span:nth-child(2) {
+    animation-delay: 0.1s;
+}
+.loader-6 span:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+/* 7) Skeleton lineal: uso gradiente que se desplaza */
+.loader-7 {
+    width: 100px;
+    height: 10px;
+    border-radius: 999px;
+    background: #1f1f1f;
+    position: relative;
+    overflow: hidden;
+}
+.loader-7::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.15),
+        transparent
+    );
+    transform: translateX(-100%);
+    animation: shimmer 1.2s infinite;
+}
+
+/* 8) Cuadro girando: simulo un cuadrado "flotando" */
+.loader-8 {
+    width: 26px;
+    height: 26px;
+    border: 3px solid #00eaff;
+    border-radius: 4px;
+    animation: rotate-tilt 0.9s ease-in-out infinite;
+}
+
+/* Animaciones generales que reutilizo en varios loaders */
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes spin-reverse {
+    to {
+        transform: rotate(-360deg);
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+        opacity: 0.4;
+    }
+    50% {
+        transform: translateY(-6px) scale(1.1);
+        opacity: 1;
+    }
+}
+
+@keyframes slide-x {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(170%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(0.7);
+        opacity: 0.2;
+    }
+    60% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1.2);
+        opacity: 0;
+    }
+}
+
+@keyframes stretch {
+    0%, 100% {
+        height: 8px;
+    }
+    50% {
+        height: 26px;
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes rotate-tilt {
+    0%, 100% {
+        transform: rotate(0deg) translateY(0);
+    }
+    50% {
+        transform: rotate(20deg) translateY(-4px);
+    }
+}
