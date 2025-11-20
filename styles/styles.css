@@ -1,4 +1,4 @@
-/* Reset básico */
+/* Estilos básicos */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -64,7 +64,6 @@ p {
     align-items: center;
 }
 
-/* --------------------------------------- */
 /* 1) Spinner borde */
 .loader-1 {
     width: 40px;
@@ -75,7 +74,6 @@ p {
     animation: spin 0.8s linear infinite;
 }
 
-/* --------------------------------------- */
 /* 2) Doble anillo */
 .loader-2 {
     width: 40px;
@@ -101,7 +99,6 @@ p {
     animation: spin-reverse 0.9s linear infinite;
 }
 
-/* --------------------------------------- */
 /* 3) Tres puntos */
 .loader-3 {
     gap: 6px;
@@ -116,7 +113,6 @@ p {
 .loader-3 span:nth-child(2) { animation-delay: 0.1s; }
 .loader-3 span:nth-child(3) { animation-delay: 0.2s; }
 
-/* --------------------------------------- */
 /* 4) Barra progresiva */
 .loader-4 {
     width: 80px;
@@ -137,7 +133,6 @@ p {
     animation: slide-x 1s ease-in-out infinite;
 }
 
-/* --------------------------------------- */
 /* 5) Pulso */
 .loader-5 {
     width: 40px;
@@ -147,7 +142,6 @@ p {
     animation: pulse 1.2s ease-out infinite;
 }
 
-/* --------------------------------------- */
 /* 6) Barras verticales */
 .loader-6 {
     height: 28px;
@@ -161,7 +155,6 @@ p {
 .loader-6 span:nth-child(2) { animation-delay: 0.1s; }
 .loader-6 span:nth-child(3) { animation-delay: 0.2s; }
 
-/* --------------------------------------- */
 /* 7) Skeleton lineal */
 .loader-7 {
     width: 100px;
@@ -185,7 +178,6 @@ p {
     animation: shimmer 1.2s infinite;
 }
 
-/* --------------------------------------- */
 /* 8) Cuadro girando */
 .loader-8 {
     width: 26px;
@@ -195,7 +187,6 @@ p {
     animation: rotate-tilt 0.9s ease-in-out infinite;
 }
 
-/* --------------------------------------- */
 /* 9) Loading... con puntos */
 .loader-dots-text {
     font-size: 16px;
@@ -216,7 +207,6 @@ p {
 .loader-dots-text .dot:nth-of-type(2) { animation-delay: 0.3s; }
 .loader-dots-text .dot:nth-of-type(3) { animation-delay: 0.6s; }
 
-/* --------------------------------------- */
 /* Animaciones generales */
 @keyframes spin { to { transform: rotate(360deg); } }
 @keyframes spin-reverse { to { transform: rotate(-360deg); } }
